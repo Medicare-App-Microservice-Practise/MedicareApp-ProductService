@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.medicare.productservice.dto.ProductCartResponseDto;
 import com.medicare.productservice.dto.ProductRequestDto;
 import com.medicare.productservice.dto.ProductResponseDto;
 import com.medicare.productservice.entity.Product;
@@ -122,6 +123,19 @@ public class ProductServices {
 	public void deleteProduct(int id)
 	{
 		repo.deleteById(id);
+	}
+	
+	public ProductCartResponseDto getProductCart (int productId) throws NotFoundException
+	{
+		Product product = repo.findById(productId).orElseThrow(()-> new NotFoundException("Product ID "+productId+" Not Found"));
+		ProductCartResponseDto productCartResponseDto = mapper.productToProductCartResponseDto(product);
+		return productCartResponseDto;
+	}
+	
+	public void addProductBulk (List<ProductRequestDto> productRequestDto)
+	{
+		List<Product> product = mapper.listProductRequestDtoToProduct(productRequestDto);
+		repo.saveAll(product);
 	}
 	
 }

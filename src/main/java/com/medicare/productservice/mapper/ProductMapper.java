@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mapstruct.Mapper;
 
+import com.medicare.productservice.dto.ProductCartResponseDto;
 import com.medicare.productservice.dto.ProductRequestDto;
 import com.medicare.productservice.dto.ProductResponseDto;
 import com.medicare.productservice.entity.Product;
@@ -17,4 +18,7 @@ public interface ProductMapper {
 	
 	public List<ProductResponseDto> listProdutToProductResponseDto (List<Product> product);
 	
+	public ProductCartResponseDto productToProductCartResponseDto (Product product);
+	
+	public List<Product> listProductRequestDtoToProduct (List<ProductRequestDto> productRequestDto);
 }

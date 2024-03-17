@@ -61,6 +61,7 @@ public class Product {
 	protected void onCreate() {
     	 dateAdded = LocalDateTime.now();
     	 dateModified = LocalDateTime.now(); // This line is redundant if it's the same as dateAdded
+    	 isActive = true;
 	}
 	
 	@PreUpdate
